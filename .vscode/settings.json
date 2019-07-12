@@ -1,0 +1,26 @@
+{
+    "liveSassCompile.settings.formats":[
+        // This is Default.
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "~/../dist/style"
+        },
+    ],
+    "liveSassCompile.settings.autoprefix": [
+        "> 1%",
+        "last 2 versions"
+    ],
+    "liveSassCompile.settings.excludeList": [ 
+        "**/node_modules/**",
+        ".vscode/**" 
+    ],
+    /* "easysass.formats": [ 
+        { 
+            "format": "compressed", // 压缩
+            "extension": ".css"
+        }
+    ],
+    "easysass.targetDir": "./homework/page-h5/m2/dist/style" // 自定义css输出文件路径12345 */
+}
+

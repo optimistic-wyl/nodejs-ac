@@ -1,0 +1,19 @@
+设计稿的100%还原-「REM」引发的思考:
+https://www.jianshu.com/p/1b13889c80f5
+
+
+移动端 H5 --页面适配（二）：*homework-m2*
+https://blog.csdn.net/gao531162436/article/details/81699313
+
+
+【原创】移动端高清、多屏适配方案:*homework-m1*
+http://www.html-js.com/article/Mobile-terminal-H5-mobile-terminal-HD-multi-screen-adaptation-scheme%203041
+
+
+移动端页面开发的两种方式:
+https://www.cnblogs.com/jasmine-95/p/7235186.html
+
+
+移动端页面适配———多方案解析：
+https://www.jianshu.com/p/3b45aa981e77
+

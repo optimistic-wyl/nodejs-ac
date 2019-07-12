@@ -1,0 +1,18 @@
+//设计稿尺寸大小，假如设计稿宽度750
+$baseDesignWidth: 750;
+
+@function cc($val){
+    @return $val / $baseDesignWidth;
+}
+
+//适配元素采用rem，假如设计稿中元素宽度180
+.logo{
+    width : cc(180rem);
+    height: cc(50rem);
+    background: #ddd;
+}
+
+//边框采用px，假如设计稿边框宽度1px
+.box{
+    border : 1px solid #ddd;
+}
