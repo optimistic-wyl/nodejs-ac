@@ -25,13 +25,53 @@
     }
 }
 
-.logo{
-    @include px2rem(width, 300);
-    @include px2rem(height, 300);
-    background: #eeeeee
+body{
+    background:#f2f2f2;
 }
 
-h1{
-    @include px2px(font-size, 36);
-    font-weight: normal;
+.logo{
+    @include px2rem(width, 750);
+    @include px2rem(height, 339.75);
+    background: url(../../image/1.png);
+    background-size: contain;
+}
+
+.form-container{
+    @include px2rem(width, 600);
+    border-radius: 20px;
+    background: #fff;
+    margin: 0 auto;
+    @include px2rem(margin-top, -130);
+    @include px2rem(padding, 60);
+    input{
+        @include px2px(font-size, 32);
+        border: none;
+        border-bottom: 1px solid #f4f4f4;
+        padding: 36px;
+        width: 100%;
+    }
+    button{
+        background: #ff8309;
+        border: none;
+        border-radius: 70px;
+        color: #fff;
+        @include px2px(font-size, 36);
+        @include px2rem(padding, 20);
+        width: 100%;
+        @include px2rem(margin-top, 100);
+        @include px2rem(margin-bottom, 50);
+    }
+    p{
+        @include px2px(font-size, 28);
+        text-align: center;
+        color: #adadad;
+    }
+    a{
+        @include px2rem(padding-left, 60);
+        @include px2rem(padding-right, 60);
+        color: #cccccc;
+        &.active {
+            color: #ff8309
+        }
+    }
 }
