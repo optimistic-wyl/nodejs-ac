@@ -3,4 +3,29 @@
   height: 4rem;
   background: #eeeeee;
 }
+
+h1 {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+[data-dpr="2"] h1 {
+  font-size: 36px;
+}
+
+[data-dpr="2.5"] h1 {
+  font-size: 45px;
+}
+
+[data-dpr="2.75"] h1 {
+  font-size: 50px;
+}
+
+[data-dpr="3"] h1 {
+  font-size: 54px;
+}
+
+[data-dpr="4"] h1 {
+  font-size: 72px;
+}
 /*# sourceMappingURL=i.css.map */

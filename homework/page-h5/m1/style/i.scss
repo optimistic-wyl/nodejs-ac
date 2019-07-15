@@ -30,3 +30,8 @@
     @include px2rem(height, 300);
     background: #eeeeee
 }
+
+h1{
+    @include px2px(font-size, 36);
+    font-weight: normal;
+}
