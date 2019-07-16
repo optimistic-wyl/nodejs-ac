@@ -30,10 +30,11 @@ body{
 }
 
 .logo{
-    @include px2rem(width, 750);
+    width: 100%;
     @include px2rem(height, 339.75);
     background: url(../../image/1.png);
     background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .form-container{

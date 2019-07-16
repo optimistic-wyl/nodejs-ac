@@ -7,7 +7,6 @@ dpr = window.devicePixelRatio || 1;
 rem = docEl.clientWidth * dpr / 10;
 scale = 1 / dpr;
 
-
 // 设置viewport，进行缩放，达到高清效果
 metaEl.setAttribute('content', 'width=' + dpr * docEl.clientWidth + ',initial-scale=' + scale + ',maximum-scale=' + scale + ', minimum-scale=' + scale + ',user-scalable=no');
 
