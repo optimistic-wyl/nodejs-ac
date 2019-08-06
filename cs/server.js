@@ -2,6 +2,17 @@ var http = require('http')
 var fs = require('fs')
 var url = require('url')
 
+/* var server = http.createServer(function(request, response){
+    console.log(request.url);
+
+    response.writeHead(200, {'Content-Type': 'text/html'});    
+         
+    // 响应文件内容
+    response.write("data.toString()"); 
+}).listen(8080, () => {
+    console.log('---服务器已经启动，监听的端口号是8080')
+}); */
+
 var server = http.createServer().listen(8080, () => {
     console.log('---服务器已经启动，监听的端口号是8080')
 });
@@ -24,7 +35,7 @@ server.on('request',function(req,res){
                 // HTTP 状态码: 404 : NOT FOUND
                 // Content Type: text/html
                 res.writeHead(404, {'Content-Type': 'text/html'});
-            }else{             
+            }else{
                 // HTTP 状态码: 200 : OK
                 // Content Type: text/html
                 res.writeHead(200, {'Content-Type': 'text/html'});    
