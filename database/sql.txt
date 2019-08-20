@@ -1,0 +1,25 @@
+
+***数据字典
+SELECT C.TABLE_NAME AS '表',
+    T.TABLE_COMMENT AS '表名',
+    C.COLUMN_NAME AS '字段名',
+    C.COLUMN_TYPE AS '数据类型',
+    C.IS_NULLABLE AS '允许为空',
+    C.COLUMN_COMMENT AS '字段说明',
+    C.COLUMN_KEY AS '键' FROM INFORMATION_SCHEMA.COLUMNS C JOIN INFORMATION_SCHEMA.TABLES T ON C.TABLE_SCHEMA = T.TABLE_SCHEMA
+AND C.TABLE_NAME = T.TABLE_NAME WHERE C.TABLE_SCHEMA = 'wyl_test'
+
+delimiter $$
+
+***创建存储过程：
+create procedure inout_param(inout p_inout int)
+	begin
+		select p_inout;
+		set p_inout=2;
+		select p_inout;
+	end$$
+delimiter ;
+
+***调用纯粹过程
+set @p_inout=1;
+call inout_param(@p_inout);
