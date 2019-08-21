@@ -29,7 +29,7 @@ val = val.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
 // 小数点后面保留2位
 val = val.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3');
 
-
+css3修改radio样式，ie11不兼容
 .iconfont input[type="radio"] {
     font-family: "iconfont" !important;
     font-size: 16px;
@@ -51,6 +51,33 @@ val = val.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3');
     color: #fa5f02;
 }
 .iconfont input[type="radio"]:after {
+    content: "\e6f0";
+}
+
+css3修改radio样式，ie11兼容方式
+<label class="iconfont" :class="{labelChoose: is3}" @click="labelClick(3)">
+    <input type="radio" value="3" v-model="zhifuPicked"/><i></i>京票智票
+</label>
+
+
+.iconfont{
+    cursor: pointer;
+    margin-right: 5px;
+}
+.iconfont input[type="radio"] {
+    display: none;
+}
+.iconfont i{
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    margin-right: 3px;
+}
+.iconfont.labelChoose i:after {
+    content: "\e80c";
+    color: #fa5f02;
+}
+.iconfont i:after {
     content: "\e6f0";
 }
 
