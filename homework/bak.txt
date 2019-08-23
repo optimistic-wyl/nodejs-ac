@@ -93,5 +93,8 @@ css3修改滚动条：
 
 平时遇到的兼容性问题：
 1、移动端设置的1px的边框在android上显示，在iPhone不显示
+<div style="height:1px;background:#dedede;transform: scaleY(0.5);transform-origin: 0 0;overflow: hidden;"></div>
+
 2、给select绑定了change事件，给option同时也绑定了click事件，ie上不能触发option的点击事件
-3、修改type=radio的input框样式
+
+3、修改type=radio的input框样式，ie上不识别.iconfont input[type="radio"]
