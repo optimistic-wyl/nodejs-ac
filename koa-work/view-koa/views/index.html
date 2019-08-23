@@ -76,5 +76,20 @@
             </div>
         </div>
     </div>
+    <div>
+        <button id='send'>发送</button>
+    </div>
+    <script>
+        $('#send').click(function(){
+            $.ajax({
+                type: 'post',
+                url: '/restful',
+                data : {},
+                success: function(data){
+                    console.log(data)
+                }
+            })
+        });
+    </script>
 </div>
 {% endblock %}
