@@ -36,9 +36,17 @@ $(function () {
     var vmMessageList = new Vue({
         el: '#message-list',
         data: {
-            messages: []
+            messages: [],
+            mm: [1,2,3],
+            /* userProfile: {
+                name: 'Anika'
+            } */
         }
     });
+    vmMessageList.userProfile = {
+        name: 'Anika'
+    }
+
     var vmUserList = new Vue({
         el: '#user-list',
         data: {
@@ -121,6 +129,8 @@ $(function () {
                                     </div>
                                 </div>
                             </div>
+                            <!--不能用插值表达式，应该是跟nunjucks冲突了-->
+                            <!-- <h4 class="media-heading" v-for="x in mm">{{x}}</h4> -->
                         </div>
                     </div>
                     <div>

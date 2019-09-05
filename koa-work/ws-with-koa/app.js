@@ -129,6 +129,8 @@ function onConnect() {
     let user = this.user;
     let msg = createMessage('join', user, `${user.name} joined.`);
     this.wss.broadcast(msg);
+
+    //this.send(msg);
     // build user list:
     let users = this.wss.clients.map(function (client) {
         return client.user;
