@@ -56,7 +56,7 @@ body{
         border: none;
         border-radius: 70px;
         color: #fff;
-        @include px2px(font-size, 36);
+        @include px2px(font-size, 44);
         @include px2rem(padding, 20);
         width: 100%;
         @include px2rem(margin-top, 100);

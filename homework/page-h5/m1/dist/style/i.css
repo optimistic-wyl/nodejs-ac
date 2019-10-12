@@ -52,7 +52,7 @@ body {
   border: none;
   border-radius: 70px;
   color: #fff;
-  font-size: 18px;
+  font-size: 22px;
   padding: 0.26667rem;
   width: 100%;
   margin-top: 1.33333rem;
@@ -60,23 +60,23 @@ body {
 }
 
 [data-dpr="2"] .form-container button {
-  font-size: 36px;
+  font-size: 44px;
 }
 
 [data-dpr="2.5"] .form-container button {
-  font-size: 45px;
+  font-size: 55px;
 }
 
 [data-dpr="2.75"] .form-container button {
-  font-size: 50px;
+  font-size: 61px;
 }
 
 [data-dpr="3"] .form-container button {
-  font-size: 54px;
+  font-size: 66px;
 }
 
 [data-dpr="4"] .form-container button {
-  font-size: 72px;
+  font-size: 88px;
 }
 
 .form-container p {
@@ -112,6 +112,6 @@ body {
 }
 
 .form-container a.active {
-  color: #ff8309;
+  color: #ee9944;
 }
 /*# sourceMappingURL=i.css.map */
