@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>获取媒体流</title>
+</head>
+<body>
+<div id="app">
+  <h1>获取媒体流</h1>
+  <video id="video" autoplay width="340px" height="400px"></video>
+  <button type="button" onclick="capture()">点击拍照</button>
+  <canvas id="canvas" width="320" height="240"></canvas>
+</div>
+<script>
+  function hasUserMedia() {
+    return !!(navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+  }
+
+  if (hasUserMedia()) {
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    navigator.getUserMedia({video: {
+        width: 320,
+        height:240,
+      }, audio: false}, function (stream) {
+      console.log(stream);
+      var video = document.querySelector('video');
+      video.srcObject=stream;
+    }, function (err) {
+      console.log(err);
+    });
+  } else {
+    alert("Sorry, your browser does not support getUserMedia.");
+  }
+
+  function capture(){
+    console.log('capture...');
+    var cxt=document.getElementById('canvas').getContext('2d');
+    var video=document.getElementById('video');
+    cxt.drawImage(video,0,0);
+  }
+</script>
+</body>
+</html>
