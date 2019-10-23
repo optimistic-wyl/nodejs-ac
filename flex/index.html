@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="./animate.css" />
     <style>
         .container{
             background: orange;
@@ -23,6 +24,7 @@
         /*设置原始元素样式*/
         #origin
         {
+            position: relative;
             margin:100px auto;/*水平居中*/
             width:200px;
             height:100px;
@@ -62,7 +64,7 @@
         <div class="item">box7</div>
     </div>
 
-    <div id="origin">
+    <div id="origin" class="animated fadeInLeft">
         <div id="current"></div>
     </div>
 
