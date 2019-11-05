@@ -98,3 +98,10 @@ css3修改滚动条：
 2、给select绑定了change事件，给option同时也绑定了click事件，ie上不能触发option的点击事件
 
 3、修改type=radio的input框样式，ie上不识别.iconfont input[type="radio"]
+
+
+---类似vuex这种的状态管理的工具，具体用在哪些地方？
+1、登录
+2、导航条的位置
+3、点开过的导航的缓存
+
