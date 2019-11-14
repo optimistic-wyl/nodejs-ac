@@ -39,5 +39,28 @@
             </div>
         </div>
     </div>
+    <div>
+        <form id='testForm'>
+            <input type="file" name="file"/>
+            <button type="button">button</button>
+        </form>
+    </div>
 </div>
+<script>
+    $('#testForm button').click(function(){
+        $.ajax({
+            url:'/upload',
+            method: 'post',
+            data: new FormData($('#testForm')[0]),
+            processData: false,
+            contentType: false,
+            success:function(resp){
+                console.log(resp)
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    })
+</script>
 {% endblock %}

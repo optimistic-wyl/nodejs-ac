@@ -1,3 +1,4 @@
+const path = require('path');
 const url = require('url');
 
 const ws = require('ws');
@@ -6,7 +7,8 @@ const Cookies = require('cookies');
 
 const Koa = require('koa');
 
-const bodyParser = require('koa-bodyparser');
+//const bodyParser = require('koa-bodyparser');
+const koaBody = require('koa-body');
 
 const controller = require('./controller');
 
@@ -33,7 +35,20 @@ let staticFiles = require('./static-files');
 app.use(staticFiles('/static/', __dirname + '/static'));
 
 // parse request body:
-app.use(bodyParser());
+//app.use(bodyParser());
+app.use(koaBody({
+    multipart:true, // 支持文件上传
+    encoding:'gzip',
+    formidable:{
+        uploadDir:path.join(__dirname,'public/upload/'), // 设置文件上传目录
+        keepExtensions: true,    // 保持文件的后缀
+        maxFieldsSize:2 * 1024 * 1024, // 文件上传大小
+        onFileBegin:(name,file) => { // 文件上传前的设置
+        // console.log(`name: ${name}`);
+        // console.log(file);
+        },
+    }
+}));
 
 // add nunjucks as view:
 app.use(templating('views', {
