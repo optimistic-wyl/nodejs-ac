@@ -99,6 +99,8 @@ css3修改滚动条：
 
 3、修改type=radio的input框样式，ie上不识别.iconfont input[type="radio"]
 
+4、IE上搜索框输入中文时，点击搜索报错，解决：搜索关键字encodeURIComponent编码一下
+
 
 ---类似vuex这种的状态管理的工具，具体用在哪些地方？
 1、登录
@@ -110,4 +112,7 @@ css3修改滚动条：
 
 1、在做密码输入框，密码是否明文显示的时候，bindtap、catchtap都会触发两次点击事件，换成bindtouchend就好了
 这三者的区别？？？？
+
+
+截图案例文件路径：src\views\doc-examination\current-case\stamp\stamp-matching\NoDataCheckbox.vue
 
