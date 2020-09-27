@@ -1,0 +1,157 @@
+<html>
+
+<head>
+  <title></title>
+  <style>
+  </style>
+</head>
+
+<body>
+  <p>Lion</p>
+  <p>Tiger</p>
+  <p>Leopard</p>
+
+<script src='node_modules/d3/dist/d3.min.js'>  </script>
+<script>
+var dataset = [3, 6, 9, 12, 15]
+var p = d3.select('body').selectAll('p')
+var update = p.data(dataset)
+console.log(update)
+console.log(update.enter())
+console.log(update.exit())
+
+var dataset1 = ['a', 'b', 'c']
+d3.select('body').selectAll('span').data(dataset1).enter().append('span').text(function(d){return d})
+
+var dataset3 = [50, 43, 120, 87, 99, 167, 142, 158, 30, 80, 60, 120, 40, 60, 80, 10, 20, 30, 40, 258]
+var width = 400
+var height = 400
+var padding = {top: 20, right: 20, bottom: 20, left: 10}
+var rectStep = 35
+var rectWidth = 30
+var svg = d3.select('body')
+          .append('svg')
+          .attr('width', width)
+          .attr('height', height)
+function draw() {
+  var updateRect = svg.selectAll('rect').data(dataset3)
+  var enterRect = updateRect.enter()
+  var exitRect = updateRect.exit()
+  var xScale = d3
+    .scaleBand()
+    .domain(d3.range(dataset3.length))
+    // .rangeRound([0, 400 - 40])
+    .range([padding.left, width - padding.right])
+    .padding(0.1)
+    .align(0)
+    console.log(xScale.step())
+    console.log(xScale(0))
+    console.log("ddd: ", xScale.align(), xScale.paddingOuter())
+    var xAxis = d3
+      .axisBottom(xScale)
+      .tickSizeInner(10)
+      .tickPadding(3)
+    svg
+      .append('g')
+      .attr("transform",`translate(0, ${height - padding.bottom})`)
+      .call(xAxis)
+  enterRect.append('rect')
+           .attr('fill', 'steelblue')
+           // .attr("transform", "translate(" + (padding.left ) + ", 0)")
+           .attr('x', function(d, i){
+             // return (xScale.bandwidth() + xScale.paddingInner()) * i
+             return xScale(i)
+           })
+           .attr('y', function(d){
+             return height - padding.bottom - d
+           })
+           .attr('width', xScale.bandwidth() )
+           .attr('height', function(d){
+             return d
+           })
+  exitRect.remove()
+}
+draw()
+
+function test2() {
+  const width = 500
+  const height = 500
+  const dataset = [10, 20, 30, 40, 33, 24, 12, 5, 40, 20, 60, 10, 14, 25, 20, 50, 14,100]
+  const padding = { left: 30, right: 30, top: 20, bottom: 20 }
+  const rectPadding = 4
+
+  const svg = d3
+    .select('body')
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height)
+
+  const xScale = d3
+    .scaleBand()
+    .domain(d3.range(dataset.length))
+    .rangeRound([0, width - padding.left - padding.right])
+    // .align(0)
+  console.log(xScale.bandwidth(), xScale.paddingInner(), xScale.step())
+  console.log('align: ', xScale.align())
+  console.log('paddingout: ', xScale.paddingOuter())
+  console.log(xScale.step() * xScale.paddingOuter())
+  const yScale = d3
+    .scaleLinear()
+    .domain([0, d3.max(dataset)])
+    .range([height - padding.top - padding.bottom, 0])
+
+  const xAxis = d3.axisBottom(xScale)
+  const yAxis = d3.axisLeft(yScale)
+
+  svg
+    .selectAll('rect')
+    .data(dataset)
+    .enter()
+    .append('rect')
+    .attr("transform", "translate(" + (padding.left + 5) + "," + padding.top + ")")
+    .attr('x', (d, i) => {
+      return (xScale.bandwidth() + xScale.paddingInner()) * i
+    })
+    .attr('y', (d, i) => {
+      return yScale(d)
+    })
+    .attr('height', (d, i) => {
+      return height - padding.top - padding.bottom - yScale(d)
+    })
+    .attr('width', xScale.bandwidth() - rectPadding)
+    .attr('fill', 'green')
+
+  svg
+    .selectAll('text')
+    .data(dataset)
+    .enter()
+    .append('text')
+    .attr("transform", "translate(" + padding.left + "," + padding.top + ")")
+    .attr('x', (d, i) => {
+      return (xScale.bandwidth() + xScale.paddingInner()) * i
+    })
+    .attr('y', (d, i) => {
+      return yScale(d)
+    })
+    .attr("dx", function() {
+      return xScale.bandwidth() / 2 - rectPadding;
+    })
+    .attr("dy", 20)
+    .text((d) => d)
+
+  svg
+    .append('g')
+    .attr("class", "axis")
+    .attr("transform", `translate(${padding.left},${height - padding.bottom})`)
+    .call(xAxis)
+  svg
+    .append('g')
+    .attr("class", "axis")
+    .attr("transform", `translate(${padding.left},${padding.bottom})`)
+    .call(yAxis)
+}
+test2()
+</script>
+</body>
+  
+</html>
