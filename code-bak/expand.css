@@ -1,0 +1,16 @@
+/* <transition name="expand">
+    <AdvancedSearch v-if='isShowAdSearch' :isShowAdSearch.sync="isShowAdSearch"></AdvancedSearch>
+</transition> */
+.expand-enter-active {
+    transition: all 300ms ease;
+    height: 100%;
+    overflow: hidden;
+}
+  .expand-leave-active{
+    transition: all 300ms ease;
+    height: 100%;
+    overflow: hidden;
+}
+  .expand-enter, .expand-leave-to {
+    height: 0;
+}
