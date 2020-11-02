@@ -116,3 +116,7 @@ css3修改滚动条：
 
 截图案例文件路径：src\views\doc-examination\current-case\stamp\stamp-matching\NoDataCheckbox.vue
 
+
+生成mini-svg-data-uri：
+https://codepen.io/jakob-e/pen/doMoML
+
