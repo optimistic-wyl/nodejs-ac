@@ -101,6 +101,9 @@ css3修改滚动条：
 
 4、IE上搜索框输入中文时，点击搜索报错，解决：搜索关键字encodeURIComponent编码一下
 
+5、vue项目中，elementui表格拖动可调整列宽，并且拖动表头可以移动列（利用Sortable.js实现），但是两者的拖拽事件有冲突
+解决办法：调整列宽结束的回调函数widthChange中调用sortable实例的_onDrop()方法，以解绑一些禁止事件
+
 
 ---类似vuex这种的状态管理的工具，具体用在哪些地方？
 1、登录
