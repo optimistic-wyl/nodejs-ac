@@ -171,3 +171,52 @@
  setInterval(() =>  { 
      event.emit('some_event' , num ++ ); 
  }, 1000); 
+ 
+ 
+ 
+* redux中中间件的理解（主要是compose的理解，请看代码中的那一大段注释）：
+// *
+export default function applyMiddleware(...middlewares) {
+  return createStore => reducer => {
+    const store = createStore(reducer);
+
+    let dispatch = store.dispatch;
+    // todo 加强store.dispatch
+
+    const midApi = {
+      getState: store.getState,
+      dispatch: action => dispatch(action)
+    };
+
+    const middlewareChain = middlewares.map(middleware => middleware(midApi));
+    // 重新赋值一个函数
+    dispatch = compose(...middlewareChain)(store.dispatch);
+
+    /* 
+      middlewareChain = [next => action => {}, next => action => {}, next => action => {}]
+      // (...args) => promise(thunk(logger(...args))) 错误，因为middlewareChain那里执行了一遍中间件
+      compose(...middlewareChain) = (...args) => (next => action => {})( (next => action => {}) ( (next => action => {})(...args) ))
+      dispatch = ( (...args) => (next => action => {})( (next => action => {})( (next => action => {})(...args) ) ) )(store.dispatch)
+      上面的不容易看清楚，假设用f1,f2,f3带入：dispatch = ( (...args) => f1( f2( f3(...args) ) ) )(store.dispatch)
+      第一次执行，f3的参数是(store.dispatch), 执行后结果为：dispatch = f1( f2 ( action => {} ) )
+      第二次执行，f2的参数是上一次返回的action => {}, 执行后结果为：dispatch = f1( action => {} )
+      最终为f1的执行结果, 此为dispatch函数的样子: dispatch = action => {}
+    */
+
+    // 返回加强版，加强store.dispatch
+    return {
+      ...store,
+      dispatch
+    };
+  };
+}
+
+function compose(...funcs) {
+  if (funcs.length === 0) {
+    return arg => arg;
+  }
+  if (funcs.length === 1) {
+    return funcs[0];
+  }
+  return funcs.reduce((a, b) => (...args) => a(b(...args)));
+}
