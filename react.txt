@@ -1,5 +1,5 @@
 
-* react-redux
+******** react-redux（主要是如下两点）
  - context, provider传递store
  - connet高阶组件中通过usecontext获取store，将state，dispatch作为属性传递给组件，
    并且通过useEffect设置订阅（就是redux中的订阅），当有状态变化时，forceUpdate更新组件
@@ -134,7 +134,8 @@
       return store.dispatch;
     }
 
-   
+
+********比较redux的订阅和事件的发布订阅模式，react-redux中的订阅时机在connect高阶组件中的useLayoutEffect中（请看上面代码）
 * redux
  - subscribe(fn) --> fn被存在一个数组中 --> 当dispatch执行时，遍历数组执行一个个的fn，vue中也是store.subscribe(fn)
  
@@ -174,7 +175,7 @@
  
  
  
-* redux中中间件的理解（主要是compose的理解，请看代码中的那一大段注释）：
+******** redux中中间件的理解（主要是compose的理解，请看代码中的那一大段注释）：
 // *
 export default function applyMiddleware(...middlewares) {
   return createStore => reducer => {
