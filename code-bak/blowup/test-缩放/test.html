@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            overflow: hidden;
+            position: absolute;
+            left: calc(50% - 250px);
+            top: calc(50% - 250px);
+            border: 2px solid blue;
+            width: 500px;
+            height: 500px;
+        }
+        div img{
+            position: absolute;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="div">
+        <img id='img' src="./test.png"/>
+    </div>
+    <script type="text/javascript">
+        var inc = 1
+        var $div = document.getElementById("div")
+        var $img = document.getElementById("img")
+
+        var fnWheel = function(obj, callback) {
+            // this.scrollEventBar = this.fnThrottle(fn, 500, 300)
+            obj.onmousewheel = fn
+            if (obj.addEventListener) {
+                obj.addEventListener('DOMMouseScroll', fn, false)
+            }
+            function fn(ev) {
+                const oEvent = ev || window.event
+                if (!oEvent) return
+                let down = true
+                if (oEvent.detail) {
+                down = oEvent.detail > 0
+                } else {
+                down = oEvent.wheelDelta < 0
+                }
+                if (callback) {
+                callback.call(this, down, oEvent)
+                }
+                if (oEvent.preventDefault) {
+                oEvent.preventDefault()
+                }
+                return false
+            }
+        }
+
+        // 此种方式是以图片中心为中心缩放
+        /*
+        $img.onload = function(){
+            var originW = $img.offsetWidth
+            $img.style.top = 'calc(50% - ' + $img.offsetHeight / 2 + 'px )'
+            $img.onmousewheel  = function(e) {
+                var down = e.wheelDelta < 0
+                if (down) {
+                    inc -= 0.2
+                } else {
+                    inc += 0.2
+                }
+                var beforeW = $img.offsetWidth
+                var beforeH = $img.offsetHeight
+                $img.style.width = originW * inc + "px"
+                
+                var afterW = $img.offsetWidth
+                $img.style.left = $img.offsetLeft - (afterW - beforeW)/2 +'px'
+
+                var afterH = $img.offsetHeight
+                $img.style.top = $img.offsetTop - (afterH-beforeH)/2 +'px'
+            }
+        }
+        */
+
+        // 以鼠标为中心缩放
+        $img.onload = function(){
+            var originW = $img.offsetWidth
+            $img.style.top = 'calc(50% - ' + $img.offsetHeight / 2 + 'px )'
+            $img.onmousewheel  = function(e) {
+                var down = e.wheelDelta < 0
+                const posL = e.clientX - $div.offsetLeft
+                const posT = e.clientY - $div.offsetTop
+
+                var beforeW = $img.offsetWidth
+                var beforeH = $img.offsetHeight
+
+                const ratioL = (posL - $img.offsetLeft) / beforeW
+                const ratioT = (posT - $img.offsetTop) / beforeH
+                if (down) {
+                    inc -= 0.2
+                } else {
+                    inc += 0.2
+                }
+                
+                $img.style.width = originW * inc + "px"
+
+                var afterW = $img.offsetWidth
+                var afterH = $img.offsetHeight
+
+                $img.style.left = Math.round(posL - (afterW * ratioL)) + 'px'
+                $img.style.top = Math.round(posT - (afterH * ratioT)) + 'px'
+            }
+        }
+
+        // $img.onmousewheel  = function() {
+        //     console.log('ppppp')
+        // }
+    </script>
+</body>
+</html>
