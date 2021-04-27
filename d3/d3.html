@@ -10,8 +10,9 @@
   <p>Lion</p>
   <p>Tiger</p>
   <p>Leopard</p>
+  <div id='sss'></div>
 
-<script src='node_modules/d3/dist/d3.min.js'>  </script>
+<script src='./d3.min.js'>  </script>
 <script>
 var dataset = [3, 6, 9, 12, 15]
 var p = d3.select('body').selectAll('p')
@@ -151,6 +152,81 @@ function test2() {
     .call(yAxis)
 }
 test2()
+
+// 过渡效果
+d3.select("body").transition()
+  .style("background-color", "#efefef");
+
+let t = d3.timer(elapsed => {
+  // console.log(elapsed)
+  if(elapsed >= 1000){
+    console.log('end')
+    t.stop()
+  }
+  // let interpolate = d3.scaleLinear()
+  //   .domain([0, 1000])
+  //   .range([0, o.number])
+  // o.startNumber = parseInt(interpolate(elapsed))
+  // if (elapsed >= 1000) {
+  //   o.startNumber = o.number
+  //   t.stop()
+  // }
+})
+
+var quantile = d3.scaleQuantile()
+  .domain([0, 3, 6, 8, 10])
+  .range([1, 100, 120])
+console.log('quantiles:', quantile.quantiles())
+console.log(quantile(7))
+
+var threshold = d3.scaleThreshold()
+  .domain([10, 20, 30, 40])
+  .range(['red', 'green', 'blue'])
+
+  console.log(threshold.invertExtent('blue'))
+  console.log(threshold.invertExtent('black'))
+
+  console.log(threshold(29.99))
+  console.log(threshold(41))
+
+/// 官网例子
+  const symbols = d3.scaleOrdinal().range(d3.symbols),
+    color = d3.scaleOrdinal(d3.schemePaired),
+    heightx = 200,
+    symbol = d3.symbol().size(200),
+    data = d3.range(500).map(i => ({
+      x: width * Math.random(),
+      y: heightx * Math.random(),
+      s: Math.floor(9 * Math.random()),
+      c: Math.floor(20 * Math.random())
+    })),
+    paths = data.map(
+      d =>
+        `<path transform="translate(${d.x},${d.y})" d="${symbol.type(
+          symbols(d.s)
+        )()}" fill="${color(d.c)}" />`
+    );
+  // var svg = d3.select('body').append('svg')
+  //   .attr('width', 800)
+  //   .attr('height', 200)
+  //   paths.filter(item => {
+  //     svg.append(item)
+  //   })
+    document.getElementById("sss").innerHTML = `<svg width=${width} height=${heightx}>${paths.join("")}</svg>`
+  // return svg`<svg width=${width} height=${heightx}>${paths.join("")}</svg>`;
+
+// 生成坐标轴
+  var svg = d3.select('body').append('svg')
+    .attr('width', 400)
+    .attr('height', 100)
+
+  var xScale = d3.scaleLinear()
+    .domain([0, 10])
+    .range([0, 200])
+  var axis = d3.axisBottom(xScale)
+  var gAxis = svg.append('g')
+    .attr('transform', 'translate(80, 80)')
+  axis(gAxis)
 </script>
 </body>
   
