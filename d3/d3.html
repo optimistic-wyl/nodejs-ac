@@ -121,6 +121,13 @@ function test2() {
     })
     .attr('width', xScale.bandwidth() - rectPadding)
     .attr('fill', 'green')
+    .on('mouseover', function(d, i) {
+      console.log(d, i)
+      d3.select(this).attr("fill", 'yellow')
+    })
+    .on('mouseout', function() {
+      d3.select(this).transition().duration(500).attr("fill", 'green')
+    })
 
   svg
     .selectAll('text')
