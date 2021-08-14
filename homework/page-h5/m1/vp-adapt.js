@@ -1,15 +1,40 @@
 var dpr, rem, scale;
+/**
+ * document: html文档
+ * document.documentElement: 获取元素<html>
+ * HTMLElement: 是一种泛指html元素类型：html，div，p，span等
+ */
+
+/**
+ * 回顾知新：
+ * 320    375   414.....这些尺寸是在设置width=device-width打印出的，
+ * 是设备独立像素（密度无关像素）
+ * 
+ * 物理像素：设备像素
+ * 
+ * dpr = 设备像素 / 设备独立像素
+ * 
+ * css像素：设备无关像素
+ * 
+ * 参考：
+ * 使用Flexible实现手淘H5页面的终端适配：https://github.com/amfe/article/issues/17
+ * 
+ * viewport：
+ *  ideal viewport宽度：个人认为就是设备独立像素
+ * 
+ */
 var docEl = document.documentElement;
 var fontEl = document.createElement('style');
 var metaEl = document.querySelector('meta[name="viewport"]');
 
-dpr = window.devicePixelRatio || 1;
+dpr = Math.floor(window.devicePixelRatio) || 1;
 rem = docEl.clientWidth * dpr / 10;
 scale = 1 / dpr;
 
 // 设置viewport，进行缩放，达到高清效果
+//alert(docEl.clientWidth)
 metaEl.setAttribute('content', 'width=' + dpr * docEl.clientWidth + ',initial-scale=' + scale + ',maximum-scale=' + scale + ', minimum-scale=' + scale + ',user-scalable=no');
-
+//alert(docEl.clientWidth)
 // 设置data-dpr属性，留作的css hack之用
 docEl.setAttribute('data-dpr', dpr);
 
