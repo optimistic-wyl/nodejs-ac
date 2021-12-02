@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--
+    offsetLeft: 
+        1、父元素均不设置position
+            -chrome/opera/IE: 元素边框外侧到浏览器窗口内侧（body.offsetLeft=0）
+            -firefox：元素边框外侧到body内侧（body.offsetLeft=-边框）
+        2、父元素设置为position
+            -父元素为body
+                -chrome/opera: 元素外侧到body外侧
+                -IE/firefox: 元素外侧到body内侧
+            -父元素不为body：各浏览器一致：元素外侧到父元素内侧
+    
+    js滚动事件：
+    this.support =
+      'onwheel' in document.createElement('div')
+        ? 'wheel'
+        : document.onmousewheel !== undefined
+          ? 'mousewheel'
+          : 'DOMMouseScroll'
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        /* position: relative; */
+        margin: 10px;
+        padding: 10px;
+        border: 5px solid black;
+      }
+      #container {
+        position: relative;
+        left: 100px;
+        margin: 10px;
+        padding: 10px;
+        border: 5px solid #ccc;
+        background: red;
+        width: 300px;
+        height: 300px;
+        /* overflow: hidden; */
+      }
+
+      .box {
+        position: relative;
+        float: left;
+        margin: 10px;
+        padding: 10px;
+        border: 5px solid black;
+        background: orange;
+        width: 100px;
+        height: 100px;
+      }
+
+      .content {
+        margin: 10px;
+        padding: 10px;
+        border: 5px solid black;
+        background: yellow;
+        width: 50px;
+        height: 50px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="box">
+        <div class="content"></div>
+      </div>
+
+      <div class="box">
+        <div class="content"></div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      document.onmousemove = function(e) {
+        console.log(e.offsetX)
+      }
+
+      var oContainer = document.getElementById('container')
+      var aBoxes = getElementsByClassName(oContainer, 'box')
+      console.log('container.offsetWidth=' + oContainer.offsetWidth)
+      console.log('box.offsetWidth=' + aBoxes[0].offsetWidth)
+      //console.log(aBoxes[1].firstElementChild.offsetWidth);
+      //console.log(document.body.offsetLeft);
+      console.log('container.offsetLeft=' + oContainer.offsetLeft)
+      console.log('box1.offsetLeft=' + aBoxes[0].offsetLeft)
+      console.log('box2.offsetLeft=' + aBoxes[1].offsetLeft)
+      console.log('content.offsetLeft=' + aBoxes[1].firstElementChild.offsetLeft)
+      // alert(document.body.offsetLeft);
+      // alert(oContainer.offsetLeft);
+      // alert(aBoxes[0].offsetLeft);
+      // alert(aBoxes[1].offsetLeft);
+      // alert(aBoxes[1].firstElementChild.offsetLeft);
+      function getElementsByClassName(parent, className) {
+        var allChildren = parent.getElementsByTagName('*')
+        var arr = []
+        for (var i = 0; i < allChildren.length; i++) {
+          if (allChildren[i].className == className) {
+            arr.push(allChildren[i])
+          }
+        }
+        return arr
+      }
+    </script>
+  </body>
+</html>
